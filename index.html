@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ShopEase | CE-1 Mini Project</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+    <div class="nav">
+        <div class="logo">shop<span>ease.</span></div>
+        <button class="cart-pill"
+            onclick="document.getElementById('cart').scrollIntoView({behavior:'smooth',block:'start'})">
+            🛒 Cart <span id="cartCount">0</span>
+        </button>
+    </div>
+</header>
+
+<main>
+    <section class="hero">
+        <div>
+            <h1>Find your everyday favourites.</h1>
+            <p>
+                Good picks, simple prices, and a smoother way to shop.<br>
+                Explore the collection and build your cart.
+            </p>
+        </div>
+        <div class="hero-badge" aria-hidden="true">🛍️</div>
+    </section>
+
+    <div class="layout">
+
+        
+        <section class="panel">
+            <div class="section-head">
+                <h2>Explore products</h2>
+                <span class="count" id="resultCount">8 products</span>
+            </div>
+
+            <div class="controls">
+                <input id="search" type="search"
+                    placeholder="Search products…"
+                    aria-label="Search products">
+
+                <select id="category" aria-label="Filter by category">
+                    <option value="all">All categories</option>
+                    <option>Electronics</option>
+                    <option>Fashion</option>
+                    <option>Accessories</option>
+                    <option>Home</option>
+                </select>
+
+                <select id="sort" aria-label="Sort products">
+                    <option value="featured">Sort: Featured</option>
+                    <option value="low">Price: Low to high</option>
+                    <option value="high">Price: High to low</option>
+                    <option value="name">Name: A to Z</option>
+                </select>
+            </div>
+
+            <div class="products" id="products"></div>
+        </section>
+
+       
+        <aside class="panel cart-panel" id="cart">
+            <div class="section-head">
+                <h2>Your cart</h2>
+                <span class="count" id="cartLabel">0 items</span>
+            </div>
+
+            <div class="cart-items" id="cartItems">
+                <div class="empty">
+                    Your cart is waiting for something nice.<br>
+                    Add a product to get started ✨
+                </div>
+            </div>
+
+            <div class="coupon">
+                <input id="couponCode"
+                    placeholder="Coupon code"
+                    aria-label="Coupon code"
+                    autocomplete="off">
+                <button onclick="applyCoupon()">Apply</button>
+            </div>
+
+            <div class="coupon-note" id="couponNote">
+                Try <b>WELCOME10</b> for 10% off.
+            </div>
+
+           
+            <div class="summary">
+                <div class="sum-line">
+                    <span>Subtotal</span>
+                    <strong id="subtotal">₹0.00</strong>
+                </div>
+
+                <div class="sum-line">
+                    <span>Discount</span>
+                    <strong class="discount-value" id="discount">
+                        −₹0.00
+                    </strong>
+                </div>
+
+                <div class="sum-line">
+                    <span>Delivery</span>
+                    <strong id="delivery">₹0.00</strong>
+                </div>
+
+                <div class="sum-line total">
+                    <span>Total</span>
+                    <span id="total">₹0.00</span>
+                </div>
+            </div>
+
+            <button class="primary-btn" onclick="openCheckout()">
+                Proceed to checkout →
+            </button>
+
+            <div class="secure">
+                🔒 Demo checkout · No real payment is taken
+            </div>
+
+            <div class="notice" id="notice"></div>
+        </aside>
+    </div>
+</main>
+
+<footer>
+    ShopEase · CE-1 Mini Project · Built with HTML, CSS & JavaScript
+</footer>
+
+
+<div class="modal-backdrop" id="checkoutModal"
+    role="dialog" aria-modal="true"
+    aria-labelledby="checkoutTitle">
+
+    <div class="modal">
+        <h2 id="checkoutTitle">Complete your order</h2>
+        <p>
+            Enter your details to place a demo order.
+            No payment will be processed.
+        </p>
+
+        <form id="checkoutForm">
+            <div class="form-grid">
+
+                <div>
+                    <label for="customerName">Full name</label>
+                    <input id="customerName" required
+                        placeholder="Your name">
+                </div>
+
+                <div>
+                    <label for="customerEmail">Email address</label>
+                    <input id="customerEmail" type="email" required
+                        placeholder="you@example.com">
+                </div>
+
+                <div>
+                    <label for="customerAddress">Delivery address</label>
+                    <input id="customerAddress" required
+                        placeholder="House no., street, city">
+                </div>
+
+                <div>
+                    <label for="paymentMethod">Payment method</label>
+                    <select id="paymentMethod">
+                        <option>Cash on Delivery</option>
+                        <option>UPI (demo)</option>
+                        <option>Card (demo)</option>
+                    </select>
+                </div>
+
+            </div>
+
+            <div class="modal-actions">
+                <button type="button" class="secondary-btn"
+                    onclick="closeCheckout()">
+                    Cancel
+                </button>
+
+                <button class="primary-btn" type="submit">
+                    Place demo order
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="toast" id="toast" role="status"></div>
+
+<script src="script.js"></script>
+</body>
+</html>
